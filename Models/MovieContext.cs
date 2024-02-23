@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Mission06_Cruz.Models;
 
 namespace FilmCollection.Models
 {
@@ -8,6 +9,7 @@ namespace FilmCollection.Models
         {
         }   
 
-        public DbSet<Movie> Movies { get; set;}
+        public DbSet<Movies> Movies { get; set;}
+        public DbSet<Categories> Categories { get; set;}
     }
 }

@@ -1,35 +1,83 @@
-﻿@{
+﻿@using Mission06_Cruz.Models
+@{
     ViewData["Title"] = "Enter Movie";
 }
-@model Movie
+@model Movies
 <h1>@ViewData["Title"]</h1>
-
 
 <p>Please fill out the form below to enter a movie into the database.</p>
 
-
-
 <form method="post">
-    <label asp-for="category">Category:</label>
-        <input asp-for="category"/><br />
-    <label asp-for="title">Title:</label>
-        <input asp-for="title" /><br />
-    <label asp-for="year">Year:</label>
-        <input asp-for="year" /><br />
-    <label asp-for="director">Director:</label>
-        <input asp-for="director" /><br />
-    <label asp-for="rating">Rating:</label>
-    <select asp-for="rating">
-        <option value="G">G</option>
-        <option value="PG">PG</option>
-        <option value="PG-13">PG-13</option>
-        <option value="R">R</option>
-    </select><br />
-    <label asp-for="edited">Edited:</label>
-        <input asp-for="edited"/><br />
-    <label asp-for="lent">Lent To:</label>
-        <input asp-for="lent"/><br />
-    <label asp-for="notes">Notes:</label>
-        <textarea asp-for="notes" maxlength="25" rows="3"></textarea>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <input type="hidden" asp-for="MovieId" />
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="CategoryId">Category:</label>
+            <select asp-for="CategoryId" class="form-control">
+                <option value="" disabled selected>Select a Category</option>
+                @foreach (Categories c in ViewBag.Categories)
+                {
+                    <option value="@c.CategoryId">@c.CategoryName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Title">Title:</label>
+            <input asp-for="Title" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Year">Year:</label>
+            <input asp-for="Year" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Director">Director:</label>
+            <input asp-for="Director" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Rating">Rating:</label>
+            <select asp-for="Rating" class="form-control">
+                <option value="" disabled selected>Select a Rating</option>
+                <option value="G">G</option>
+                <option value="PG">PG</option>
+                <option value="PG-13">PG-13</option>
+                <option value="R">R</option>
+                <option value="UR">UR</option>
+                <option value="NR">NR</option>
+                <option value="TV-Y7">TV-Y7</option>
+                <option value="TV-G">TV-G</option>
+                <option value="TV-PG">TV-PG</option>
+                <option value="TV-14">TV-14</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Edited">Edited:</label>
+            <input asp-for="Edited"/>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="LentTo">Lent To:</label>
+            <input asp-for="LentTo" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="CopiedToPlex">Copied to Plex:</label>
+            <input asp-for="CopiedToPlex"  />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Notes">Notes:</label>
+        <textarea asp-for="Notes" class="form-control" maxlength="25" rows="3"></textarea>
+    </div>
+    <br/>
+    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+
+    <div style="color:red;" asp-validation-summary="All"></div>
 </form>
